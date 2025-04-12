@@ -1,28 +1,49 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
-//배경 스타일
-const Container = styled.div`
+const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: hidden;
+  max-width: 1200px;
+  background-color: rgb(159, 155, 155);
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  outline: none;
+`;
+
+//배경 스타일
+const Container = styled.div`
+  width: 100%;
+  max-width: 100%;
   height: 100vh;
-  background-color: #d0cfcf;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 
 //로그인 박스 스타일
 const LoginBox = styled.div`
-  width: 350px;
-  background-color: #fafafa;
-  padding: 40px;
+  width: 300px;
+  background-color: #ffffff;
+  padding: 30px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
+  justify-content: center;
+  flez-direction: column;
+  align-items: center;
 `;
 
 // weatherFit 텍스트 스타일
-const LogoText = styled.div`
+const TopLogo = styled.div`
   font-size: 24px;
   font-weight: bold;
   color: #4a4a4a;
@@ -60,7 +81,7 @@ const LoginButton = styled.button`
   }
 `;
 
-const Link = styled.a`
+const StyledLink = styled(RouterLink)`
   display: block;
   margin-top: 15px;
   color: #5c85d6;
@@ -84,28 +105,30 @@ const LoginPage = () => {
   };
 
   return (
-    <Container>
-      <LoginBox>
-        <LogoText>Weather Fit</LogoText>
-        <form onSubmit={handleLogin}>
-          <Input
-            type="text"
-            placeholder="아이디"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <LoginButton type="submit">로그인</LoginButton>
-        </form>
-        <Link href="/signup">회원가입</Link>
-        <Link href="#">아이디/비밀번호 찾기</Link>
-      </LoginBox>
-    </Container>
+    <Wrapper>
+      <Container>
+        <LoginBox>
+          <TopLogo>Weather Fit</TopLogo>
+          <form onSubmit={handleLogin}>
+            <Input
+              type="text"
+              placeholder="아이디"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+            <Input
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <LoginButton type="submit">로그인</LoginButton>
+          </form>
+          <StyledLink to="/signup">회원가입</StyledLink>
+          <StyledLink to="#">아이디/비밀번호 찾기</StyledLink>
+        </LoginBox>
+      </Container>
+    </Wrapper>
   );
 };
 
